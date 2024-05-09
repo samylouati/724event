@@ -13,13 +13,25 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
+  // Je recupere les data fetch dans le fichier DataContext
   const {data} = useData()
   console.log(data)
 
+  // Verifier si 'data' est definit ('?.' > operateur de chainage optionnel). Si 'data' est definit et qu'il possede une propriété 'events', elle prendra la valeur 'data.events'
+  // Cette approche permet d'eviter les erreurs de type 'valeur indefini'
   const events = data?.events || [];
   console.log(events);
 
-  const last = events;  
+  const last = (events) => {
+    // Je trie les evenements recuperés par date
+
+    const sortEvent = events.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    // Dernier evenement
+    return sortEvent[0];
+  }
 
   return <>
     <header>
