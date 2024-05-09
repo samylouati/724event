@@ -13,25 +13,21 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  // Je recupere les data fetch dans le fichier DataContext
+  // Je recupere les elements qui sont fetch dans le fichier dataContext (events + focus)
   const {data} = useData()
-  console.log(data)
 
-  // Verifier si 'data' est definit ('?.' > operateur de chainage optionnel). Si 'data' est definit et qu'il possede une propriété 'events', elle prendra la valeur 'data.events'
-  // Cette approche permet d'eviter les erreurs de type 'valeur indefini'
-  const events = data?.events || [];
-  console.log(events);
+  // je veux juste les events qui sont dans le fichier JSON
+  const events = data.events || [];
 
-  const last = (events) => {
-    // Je trie les evenements recuperés par date
+  // Fonction pour trier les events par date
+  const sortByDate = (event) => event.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    const sortEvent = events.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    });
+  const sortEvents = sortByDate(events);
 
-    // Dernier evenement
-    return sortEvent[0];
-  }
+  // Je recupere le dernier evenement en date dans la copie du tableau
+  const lastEvent = sortEvents[0];
+
+  const last = lastEvent;
 
   return <>
     <header>
