@@ -11,14 +11,20 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
-      5000
-    );
+    // Ajout condition pour appel de la fonction
+    if (byDateDesc) {
+      setTimeout(
+        () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+        5000
+      );
+    }
   };
   useEffect(() => {
     nextCard();
-  });
+  },
+
+  [index]); // J'ajoute un index comme dependance pour eviter les problemes de rendu
+  
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
