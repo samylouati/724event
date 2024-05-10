@@ -14,20 +14,21 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   // Je recupere les elements qui sont fetch dans le fichier dataContext (events + focus)
-  const {data} = useData()
+  const  { data } = useData()
+  console.log(data)
 
-  // je veux juste les events qui sont dans le fichier JSON
-  const events = data.events || [];
+  // je veux juste les events qui sont dans le fichier JSON > je conditonne la variable, je verifie si data n'est pas null
+  const events = data && data.events ? data.events : [];
 
   // Fonction pour trier les events par date
   const sortByDate = (event) => event.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const sortEvents = sortByDate(events);
 
-  // Je recupere le dernier evenement en date dans la copie du tableau
+  // // Je recupere le dernier evenement en date dans la copie du tableau
   const lastEvent = sortEvents[0];
-
   const last = lastEvent;
+  console.log(last)
 
   return <>
     <header>
@@ -136,7 +137,7 @@ const Page = () => {
           title={last?.title}
           date={new Date(last?.date)}
           small
-          label="boom"
+          label={last?.type}
         />
       </div>
       <div className="col contact">
