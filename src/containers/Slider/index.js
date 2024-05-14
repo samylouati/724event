@@ -19,6 +19,11 @@ const Slider = () => {
   useEffect(() => {
     nextCard();
   });
+
+  // Ajout possibilité de cliqué sur les dot pour afficher les images 
+  const handleDotClick = (idx) => {
+    setIndex(idx);
+  }
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
@@ -47,6 +52,7 @@ const Slider = () => {
                   name="radio-button"
                   checked={index === radioIdx}
                   readOnly
+                  onClick={() => handleDotClick(radioIdx)}
                 />
               ))}
             </div>

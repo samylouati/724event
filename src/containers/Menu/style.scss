@@ -3,6 +3,14 @@
 header {
   height: 112px;
 }
+
+.sticky-menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+}
 nav {
   font-family: "Manrope", sans-serif;
   font-weight: 500;

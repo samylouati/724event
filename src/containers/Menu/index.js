@@ -5,8 +5,8 @@ import Logo from "../../components/Logo";
 import "./style.scss";
 
 const Menu = () => (
-  <nav>
-    <Logo />
+  <nav className="sticky-menu">
+    <a href="#slide" aria-label="Accueil"><Logo/></a> 
     <ul>
       <li>
         <a href="#nos-services">Nos services</a>
