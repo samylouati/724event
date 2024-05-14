@@ -22,9 +22,9 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <React.Fragment key={`${event.title}-Fragment`}>
+        <React.Fragment key={`${event.id}-Fragment`}>
           <div
-            key={event.title}
+            key={event.id}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -42,7 +42,7 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((e, radioIdx) => (
                 <input
-                  key={`${e.title}-Radio`}
+                  key={`${e.id}-Radio`}
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
