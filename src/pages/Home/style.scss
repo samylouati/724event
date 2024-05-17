@@ -1,10 +1,28 @@
 @import "src/colors.scss";
+// Ajout effet defilement header 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  color: white;
+  transition: background-color 0.3s, opacity 0.3s;
+  z-index: 1000;
+}
+header.transparent {
+  opacity: 0;
+}
+header:hover {
+  opacity: 1;
+}
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: $primary;
+  padding-top: 145px;
 }
 
 .ServicesContainer {

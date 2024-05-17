@@ -1,3 +1,5 @@
+import { useEffect } from "react"; // Pour gerer le defilement du header
+
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -29,6 +31,23 @@ const Page = () => {
   const lastEvent = sortEvents[0];
   const last = lastEvent;
   console.log(last)
+
+  // Ajout pour la gestion du Header
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('transparent');
+      } else {
+        header.classList.remove('transparent');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return <>
     <header>
